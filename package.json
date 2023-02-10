@@ -23,6 +23,9 @@
   "main": "./out/extension.js",
   "browser": "./out/extension.js",
   "icon": "icon.png",
+  "activationEvents": [
+    "onCommand:extension.generateVueComponent"
+  ],
   "contributes": {
     "commands": [
       {
