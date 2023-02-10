@@ -1,0 +1,120 @@
+{
+  "name": "vue-component-factory",
+  "displayName": "Vue Component Factory",
+  "description": "A Visual Studio Code extension that generates Vue components easily.",
+  "author": {
+    "name": "Roberth González"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "vue",
+    "component",
+    "generator",
+    "typescript"
+  ],
+  "publisher": "reliutg",
+  "bugs:url": "https://github.com/HolaSoyGonZza/vue-component-factory/issues",
+  "main": "./out/extension.js",
+  "browser": "./out/extension.js",
+  "icon": "icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.generateVueComponent",
+        "title": "Generate Vue Component"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.generateVueComponent",
+          "group": "navigation@5"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.generateVueComponent",
+          "group": "2_workspace"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "vue-component-factory",
+      "properties": {
+        "vueComponentFactory.apiStyle": {
+          "type": "string",
+          "default": "composition",
+          "enum": [
+            "options",
+            "composition"
+          ],
+          "description": "Specifies Vue API style to use."
+        },
+        "vueComponentFactory.useSetupAttribute": {
+          "type": "boolean",
+          "default": "true",
+          "description": "The setup attribute is a hint that makes Vue perform compile-time transforms that allow us to use Composition API with less boilerplate."
+        },
+        "vueComponentFactory.scriptLang": {
+          "type": "string",
+          "default": "ts",
+          "enum": [
+            "js",
+            "ts"
+          ],
+          "description": "Specifies template language to use."
+        },
+        "vueComponentFactory.templateLang": {
+          "type": "string",
+          "default": "html",
+          "enum": [
+            "html",
+            "pug"
+          ],
+          "description": "Specifies template language to use."
+        },
+        "vueComponentFactory.styleLang": {
+          "type": "string",
+          "default": "css",
+          "description": "Specifies style language to use."
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HolaSoyGonZza/vue-component-factory"
+  },
+  "homepage": "https://github.com/HolaSoyGonZza/vue-component-factory/blob/main/README.md",
+  "license": "MIT",
+  "scripts": {
+    "vscode:prepublish": "npm run compile -- --minify",
+    "compile": "esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
+    "watch": "npm run dev -- --sourcemap --watch",
+    "dev": "npm run compile -- --sourcemap",
+    "lint": "eslint --fix src/**.ts",
+    "format": "prettier --write \"src/**.ts\"",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "@types/vscode": "^1.71.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "esbuild": "^0.17.7",
+    "eslint": "^8.34.0",
+    "prettier": "2.8.4",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "vsce": "^2.11.0"
+  }
+}
